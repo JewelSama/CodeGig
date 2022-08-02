@@ -1,5 +1,5 @@
 const express = require('express')
-const exphbs = require('express-handlebars')
+const {engine} = require('express-handlebars')
 const bodyParser = require('body-parser')
 const path = require('path')
 const db = require('./config/db')
@@ -13,6 +13,12 @@ db.authenticate()
 
 
 const app = express()
+
+//Handlebars
+app.engine('handlebars', engine());
+app.set('view engine', 'handlebars');
+app.set('views', './views');
+
 app.get('/', (req, res) => res.send('INDEX'))
 
 //Gig routes
