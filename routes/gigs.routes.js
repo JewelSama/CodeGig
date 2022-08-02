@@ -13,31 +13,58 @@ router.get('/', (req, res) =>
 )
 
 //display add gig form
-router.get('/add', (req, res) => res.render('add'))
+router.get('/add', (req, res) => res.render('add', {errors: "", title: "", technologies: "", budget: "", description: "", contact_email: ""}))
 
 
 
 //Add a gig
 router.post('/add', (req, res) => {
-    const data = {
-        title: 'Simple wordPress website',
-        technologies: 'wordPress, html, css',
-        budget: '$2500',
-        description: 'To connect to the database, you must create a Sequelize instance. This can be done by either passing the connection parameters separately to the Sequelize constructor or by passing a single connection URI:',
-        contact_email: 'user2@gmail.com'
-    }
-    let {  } = {title, technologies, budget, description, contact_email} = data
+    let {title, technologies, budget, description, contact_email} = req.body
 
-    // insert into table
-    Gig.create({
-        title,
-        technologies,
-        budget,
-        description,
-        contact_email,
-    })
-    .then(gig => res.redirect('/gigs'))
-    .catch(err => console.log(err));
+    let errors = [];
+//valisate fields
+    if(!title){
+        errors.push({text: 'Title can not be empty'})
+    }
+    if(!technologies){
+        errors.push({text: 'Technologies can not be empty'})
+    }
+    if(!description){
+        errors.push({text: 'Description can not be empty'})
+    }
+    if(!contact_email){
+        errors.push({text: 'Email can not be empty'})
+    }
+
+    //Check for errors
+
+    if(errors.length > 0)
+    {
+        res.render('add', {errors, title, technologies, budget, description, contact_email})
+        
+    } else {
+        if(!budget){
+            budget = 'Unknown';
+        } else {
+            budget = `₦${budget}`
+        }
+
+        //make lowercase and remove space after 
+        technologies = technologies.toLowerCase();
+
+        // insert into table
+        Gig.create({
+            title,
+            technologies,
+            budget,
+            description,
+            contact_email,
+        })
+        .then(gig => res.redirect('/gigs'))
+        .catch(err => console.log(err));
+    }
+
+
 
 });
 module.exports = router
