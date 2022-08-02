@@ -17,6 +17,9 @@ const app = express()
 //ejs
 app.set('view engine', 'ejs');
 
+//Body parser
+app.use(bodyParser.urlencoded({extended: false}))
+
 //Set static folder
 app.use(express.static(path.join(__dirname, 'public')))
 
