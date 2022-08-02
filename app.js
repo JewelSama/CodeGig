@@ -19,6 +19,9 @@ app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.set('views', './views');
 
+//Set static folder
+app.use(express.static(path.join(__dirname, 'public')))
+
 app.get('/', (req, res) => res.send('INDEX'))
 
 //Gig routes
