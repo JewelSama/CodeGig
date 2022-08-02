@@ -15,6 +15,8 @@ db.authenticate()
 const app = express()
 app.get('/', (req, res) => res.send('INDEX'))
 
+//Gig routes
+app.use('/gigs', require('./routes/gigs.routes'))
 
 const PORT = process.env.PORT || 5000
 
