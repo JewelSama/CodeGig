@@ -1,8 +1,8 @@
 const express = require('express')
-const {engine} = require('express-handlebars')
 const bodyParser = require('body-parser')
 const path = require('path')
 const db = require('./config/db')
+const ejs = require('ejs')
 
 
 //Test connection
@@ -14,15 +14,16 @@ db.authenticate()
 
 const app = express()
 
-//Handlebars
-app.engine('handlebars', engine());
-app.set('view engine', 'handlebars');
-app.set('views', './views');
+//ejs
+app.set('view engine', 'ejs');
 
 //Set static folder
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.get('/', (req, res) => res.send('INDEX'))
+//Index route
+
+app.get('/', (req, res) => res.render('landing'))
+
 
 //Gig routes
 app.use('/gigs', require('./routes/gigs.routes'))

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+    crossorigin="anonymous">
+
+
+  <link rel="stylesheet" href="/css/style.css">
+  <title>CodeGig</title>
+  <style>
+    /* Home Search */
+.search-wrap {
+  background: url('../img/showcase.jpg') no-repeat center center fixed / cover;
+  height: 100vh;
+  width: 100%;
+  padding: 1.3rem 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+  </style>
+</head>
+
+<body>
+  <header>
+    <h2><a href="/"><i class="fas fa-code"></i>
+        CodeGig</a></h2>
+    <nav>
+      <ul>
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/gigs">All Gigs</a>
+        </li>
+        <li>
+          <a href="/add">Add Gig</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="search" class="search-wrap">
+    <h1>Find A Coding Gig</h1>
+    <form action="gigs.html" class="search-form">
+      <i class="fas fa-search"></i>
+      <input type="search" name="term" placeholder="Javascript, PHP, Rails, etc...">
+      <input type="submit" value="Search">
+    </form>
+  </section>
+</body>
+
+</html>
